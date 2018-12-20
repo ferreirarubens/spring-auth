@@ -1,7 +1,9 @@
 package com.ferreirarubens.authserver.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -14,6 +16,7 @@ import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHand
  */
 @Configuration
 @EnableResourceServer
+@Order(SecurityProperties.IGNORED_ORDER)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
 	@Value("${security.oauth2.client.resource-ids}")
@@ -29,7 +32,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         http.
                 anonymous().disable()
                 .authorizeRequests()
-                .antMatchers("/users/**").access("hasRole('ADMIN')")
+                .antMatchers("/user").access("hasRole('ROLE_USER')")
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 }

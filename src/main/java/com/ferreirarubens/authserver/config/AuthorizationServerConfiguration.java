@@ -12,11 +12,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
-import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 import com.ferreirarubens.authserver.config.token.CustomTokenEnhancer;
+import com.ferreirarubens.authserver.security.service.CustomUserDetailsService;
 
 /**
  * @author rubens.ferreira
@@ -53,11 +53,17 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Autowired
 	@Qualifier("authenticationManagerBean")
 	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+    private CustomUserDetailsService userDetailsService;
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-		final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-		endpoints.authenticationManager(this.authenticationManager).tokenStore(this.tokenStore()).tokenEnhancer(tokenEnhancerChain);
+		endpoints
+			.authenticationManager(this.authenticationManager)
+			.userDetailsService(userDetailsService)
+			.tokenStore(this.tokenStore())
+			.tokenEnhancer(tokenEnhancer());
 	}
 
 	@Override
@@ -87,5 +93,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	public TokenEnhancer tokenEnhancer() {
 		return new CustomTokenEnhancer();
 	}
+	
 
 }

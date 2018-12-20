@@ -39,8 +39,8 @@ public class ProfilePermission {
 	@Column(name = "ck_read")
 	private boolean read;
 
-	@Column(name = "ck_insert")
-	private boolean insert;
+	@Column(name = "ck_create")
+	private boolean create;
 
 	@Column(name = "ck_update")
 	private boolean update;
@@ -54,7 +54,7 @@ public class ProfilePermission {
 
 	private static final String SUFIX_UPDATE = "_UPDATE";
 
-	private static final String SUFIX_INSERT = "_INSERT";
+	private static final String SUFIX_CREATE = "_CREATE";
 
 	public ProfilePermission() {
 
@@ -64,8 +64,8 @@ public class ProfilePermission {
 		for (String profile : profiles) {
 			if (profile.endsWith(SUFIX_READ))
 				read = true;
-			else if (profile.endsWith(SUFIX_INSERT))
-				insert = true;
+			else if (profile.endsWith(SUFIX_CREATE))
+				create = true;
 			else if (profile.endsWith(SUFIX_UPDATE))
 				update = true;
 			else if (profile.endsWith(SUFIX_DELETE))
@@ -77,20 +77,20 @@ public class ProfilePermission {
 		this.permission = permission;
 	}
 
-	public ProfilePermission(Permission permission, Profile profile, boolean read, boolean insert, boolean update,
+	public ProfilePermission(Permission permission, Profile profile, boolean read, boolean create, boolean update,
 			boolean delete) {
 		this.permission = permission;
 		this.profile = profile;
 		this.read = read;
-		this.insert = insert;
+		this.create = create;
 		this.update = update;
 		this.delete = delete;
 	}
 
-	public ProfilePermission(Permission permission, boolean read, boolean insert, boolean update, boolean delete) {
+	public ProfilePermission(Permission permission, boolean read, boolean create, boolean update, boolean delete) {
 		this.permission = permission;
 		this.read = read;
-		this.insert = insert;
+		this.create = create;
 		this.update = update;
 		this.delete = delete;
 	}
@@ -116,12 +116,12 @@ public class ProfilePermission {
 		this.read = read;
 	}
 
-	public boolean isInsert() {
-		return insert;
+	public boolean isCreate() {
+		return create;
 	}
 
-	public void setInsert(boolean insert) {
-		this.insert = insert;
+	public void setCreate(boolean create) {
+		this.create = create;
 	}
 
 	public boolean isUpdate() {
@@ -152,8 +152,8 @@ public class ProfilePermission {
 			if (isRead())
 				roles.add(getProfileRead(permission));
 
-			if (isInsert())
-				roles.add(getProfileInsert(permission));
+			if (isCreate())
+				roles.add(getProfileCreate(permission));
 
 			if (isUpdate())
 				roles.add(getProfileUpdate(permission));
@@ -169,8 +169,8 @@ public class ProfilePermission {
 		return permission + SUFIX_READ;
 	}
 
-	private String getProfileInsert(String permission) {
-		return permission + SUFIX_INSERT;
+	private String getProfileCreate(String permission) {
+		return permission + SUFIX_CREATE;
 	}
 
 	private String getProfileUpdate(String permission) {

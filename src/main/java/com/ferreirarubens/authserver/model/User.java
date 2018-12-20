@@ -3,9 +3,6 @@
  */
 package com.ferreirarubens.authserver.model;
 
-import java.util.Collection;
-import java.util.Objects;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -29,7 +26,7 @@ import com.ferreirarubens.authserver.security.model.interfaces.Authenticated;
 public class User implements Authenticated {
 
 	@Id
-	private Integer id;
+	private long id;
 
 	@Column(name = "ds_login")
 	private String login;
@@ -54,11 +51,11 @@ public class User implements Authenticated {
 		this.profile = profile;
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -93,13 +90,6 @@ public class User implements Authenticated {
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
-	}
-
-	public Collection<String> getRoles() {
-		if (Objects.nonNull(getProfile())) {
-			return getProfile().getRoles();
-		}
-		return null;
 	}
 
 }
