@@ -31,7 +31,7 @@ import com.ferreirarubens.authserver.data.serializer.ProfilePermissionListSerial
  */
 @Entity
 @AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "id_profile")) })
-@Table(name = "profile")
+@Table(name = "profile", schema = "access_control")
 public class Profile {
 
 	@Id

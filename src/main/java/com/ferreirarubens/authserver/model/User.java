@@ -21,7 +21,7 @@ import com.ferreirarubens.authserver.security.model.interfaces.Authenticated;
  *
  */
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "access_|control")
 @AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "id_user")) })
 public class User implements Authenticated {
 

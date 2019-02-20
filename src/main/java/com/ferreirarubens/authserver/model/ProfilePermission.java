@@ -22,7 +22,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "id_profile_permission")) })
-@Table(name = "profile_permission")
+@Table(name = "profile_permission", schema = "access_control")
 public class ProfilePermission {
 
 	@Id

@@ -13,7 +13,7 @@ import javax.persistence.Table;
  **/
 @Entity
 @AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "id_permission")) })
-@Table(name = "permission")
+@Table(name = "permission", schema = "access_control")
 public class Permission {
 
 	@Id
