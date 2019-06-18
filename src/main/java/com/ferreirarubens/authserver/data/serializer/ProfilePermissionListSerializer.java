@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.ferreirarubens.authserver.model.ProfilePermission;
 
 /**
- * @author rubens.ferreira
+ * @auhtor Ferreira Rubens <rubensdefrancaferreira@gmail.com>
  *
  */
 public class ProfilePermissionListSerializer extends StdSerializer<List<ProfilePermission>> {

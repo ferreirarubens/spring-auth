@@ -13,7 +13,7 @@ import com.ferreirarubens.authserver.model.User;
 import com.ferreirarubens.authserver.security.model.LoggedUser;
 
 /**
- * @author rubens.ferreira
+ * @auhtor Ferreira Rubens <rubensdefrancaferreira@gmail.com>
  *
  */
 @Service

@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.ferreirarubens.authserver.security.service.CustomUserDetailsService;
 
 /**
- * @author rubens.ferreira
+ * @auhtor Ferreira Rubens <rubensdefrancaferreira@gmail.com>
  *
  */
 @Configuration

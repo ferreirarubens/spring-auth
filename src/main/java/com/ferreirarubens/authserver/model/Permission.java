@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author rubens.ferreira
+ * @auhtor Ferreira Rubens <rubensdefrancaferreira@gmail.com>
  * 
  **/
 @Entity

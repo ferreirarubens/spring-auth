@@ -11,7 +11,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import com.ferreirarubens.authserver.security.model.LoggedUser;
 
 /**
- * @author rubens.ferreira
+ * @auhtor Ferreira Rubens <rubensdefrancaferreira@gmail.com>
  *
  */
 public class CustomTokenEnhancer implements TokenEnhancer {

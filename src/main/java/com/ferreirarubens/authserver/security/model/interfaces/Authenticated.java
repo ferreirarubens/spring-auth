@@ -1,7 +1,7 @@
 package com.ferreirarubens.authserver.security.model.interfaces;
 
 /**
- * @author rubens.ferreira
+ * @auhtor Ferreira Rubens <rubensdefrancaferreira@gmail.com>
  *
  */
 public interface Authenticated {

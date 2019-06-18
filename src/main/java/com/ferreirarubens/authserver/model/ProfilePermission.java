@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
- * @author rubens.ferreira
+ * @auhtor Ferreira Rubens <rubensdefrancaferreira@gmail.com>
  *
  */
 @Entity

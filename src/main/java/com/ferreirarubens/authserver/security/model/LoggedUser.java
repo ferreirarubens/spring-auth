@@ -11,7 +11,7 @@ import com.ferreirarubens.authserver.model.User;
 
 /**
  * 
- * @author rubens.ferreira
+ * @auhtor Ferreira Rubens <rubensdefrancaferreira@gmail.com>
  *
  */
 public class LoggedUser implements UserDetails {
