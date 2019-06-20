@@ -13,6 +13,6 @@ import com.ferreirarubens.authserver.model.User;
  */
 public interface IUserRepository extends JpaRepository<User, String> {
 	
-    User findByLogin(String login);
+    User findByLoginAndActiveTrueAndProfileActiveTrue(String login);
 
 }

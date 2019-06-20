@@ -21,7 +21,7 @@ import com.ferreirarubens.authserver.security.model.interfaces.Authenticated;
  *
  */
 @Entity
-@Table(name = "users", schema = "access_control")
+@Table(name = "user", schema = "access_control")
 @AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "id_user")) })
 public class User implements Authenticated {
 
@@ -36,6 +36,9 @@ public class User implements Authenticated {
 
 	@Column(name = "nm_user")
 	private String name;
+
+	@Column(name = "is_active")
+	private boolean active;
 
 	@ManyToOne
 	@JoinColumn(name = "id_profile")
@@ -90,6 +93,14 @@ public class User implements Authenticated {
 
 	public void setProfile(Profile profile) {
 		this.profile = profile;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }

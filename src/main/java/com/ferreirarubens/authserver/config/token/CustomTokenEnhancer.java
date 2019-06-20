@@ -21,7 +21,8 @@ public class CustomTokenEnhancer implements TokenEnhancer {
 		
 		LoggedUser loggedUser = (LoggedUser) authentication.getPrincipal();
         final Map<String, Object> additionalInfo = new HashMap<>();
-		additionalInfo.put("roles", loggedUser.getAuthorities().stream().map(a -> a.getAuthority()));
+		additionalInfo.put("roles", loggedUser.getUser().getProfile().getRoles());
+        loggedUser.getUser().getProfile().setProfilePermissions(null);
 		additionalInfo.put("user", loggedUser.getUser());
 		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
 		return accessToken;

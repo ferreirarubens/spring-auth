@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
 	@GetMapping("/user")
-	public Principal getCurrentLoggedInUser(Principal user) {
-		return user;
+	public String getCurrentLoggedInUser(Principal user) {
+		return "Logged";
 	}
 }

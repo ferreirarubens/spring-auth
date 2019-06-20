@@ -15,6 +15,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -43,10 +45,17 @@ public class Profile {
 	@Column(name = "nr_hierarchy")
 	private int hierarchy;
 
+	@Column(name = "is_active")
+	private boolean active;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "profile", orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonSerialize(using = ProfilePermissionListSerializer.class)
 	private List<ProfilePermission> profilePermissions = new ArrayList<>();
+
+	@ManyToOne
+	@JoinColumn(name = "id_profile_type")
+	private ProfileType profileType;
 
 	public Profile() {
 	}
@@ -108,6 +117,22 @@ public class Profile {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public ProfileType getProfileType() {
+		return profileType;
+	}
+
+	public void setProfileType(ProfileType profileType) {
+		this.profileType = profileType;
 	}
 
 }

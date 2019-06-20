@@ -22,7 +22,7 @@ public class Permission {
 	@Column(name = "nm_permission")
 	private String name;
 
-	@Column(name = "crud")
+	@Column(name = "is_crud")
 	private boolean crud;
 
 	public Permission() {
