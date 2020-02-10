@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
@@ -92,6 +93,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Bean
 	public TokenEnhancer tokenEnhancer() {
 		return new CustomTokenEnhancer();
+	}
+	
+	@Override 
+	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception { 
+		oauthServer.checkTokenAccess("permitAll()"); 
 	}
 	
 

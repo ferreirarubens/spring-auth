@@ -1,0 +1,30 @@
+<div id="login">
+  <div
+    class="box mat-elevation-z2 p-20"
+    fxLayout="column"
+    fxFlexAlign="center center"
+    fxLayoutGap="20px"
+  >
+    <mat-icon>vpn_key</mat-icon>
+    <span>Login</span>
+    <mat-form-field>
+      <input
+        type="text"
+        matInput
+        placeholder="username"
+        name="credentials.username"
+        [(ngModel)]="credentials.username"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        matInput
+        placeholder="password"
+        name="credentials.password"
+        [(ngModel)]="credentials.password"
+      />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="login()">Login</button>
+  </div>
+</div>

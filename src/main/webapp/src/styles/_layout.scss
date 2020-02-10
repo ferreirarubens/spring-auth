@@ -1,0 +1,45 @@
+.w100 {
+  width: 100%;
+}
+
+.h100 {
+  height: 100%;
+}
+
+$directions: '', b, t, r, l, x, y;
+
+@mixin apply($type, $property, $direction, $value) {
+  .#{$type} {
+    &#{$direction} {
+      &-#{$value} {
+        @if $direction == "l" {
+          #{$property}-left: #{$value}px !important;
+        } @else if $direction == "r" {
+          #{$property}-right: #{$value}px !important;
+        } @else if $direction == "t" {
+          #{$property}-top: #{$value}px !important;
+        } @else if $direction == "b" {
+          #{$property}-bottom: #{$value}px !important;
+        } @else if $direction == "x" {
+          #{$property}-left: #{$value}px !important;
+          #{$property}-right: #{$value}px !important;
+        } @else if $direction == "y" {
+          #{$property}-top: #{$value}px !important;
+          #{$property}-bottom: #{$value}px !important;
+        } @else {
+          #{$property}: #{$value}px !important;
+        }
+      }
+    }
+  }
+}
+
+@for $i from 0 through 200 {
+  $canRegister: $i % 0 == 0 or $i % 4 == 0;
+  @if $canRegister {
+    @each $direction in $directions {
+      @include apply("m", "margin", $direction, $i);
+      @include apply("p", "padding", $direction, $i);
+    }
+  }
+}

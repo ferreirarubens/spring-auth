@@ -23,18 +23,58 @@ repositories {
 	mavenCentral()
 }
 
-
 ext {
 	springCloudVersion = 'Finchley.RELEASE'
+}
+
+def webappDir = "$projectDir/src/main/webapp"
+sourceSets {
+	main {
+		resources {
+			srcDirs = ["$webappDir/dist", "$projectDir/src/main/resources"]
+		}
+	}
+}
+
+processResources {
+	dependsOn "buildAngular"
+}
+ 
+task buildAngular(type:Exec) {
+	// installAngular should be run prior to this task
+	// dependsOn "installAngular"
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	// Add task to the standard build group
+	group = BasePlugin.BUILD_GROUP
+	// ng doesn't exist as a file in windows -> ng.cmd
+	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+		commandLine "ng.cmd", "build"
+	} else {
+		commandLine "ng", "build", "--prod"
+	}
+}
+ 
+task installAngular(type:Exec) {
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+		commandLine "npm.cmd", "install"
+	} else {
+		commandLine "npm", "install"
+	}
 }
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.cloud:spring-cloud-starter-config')
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
 	compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
